@@ -1,0 +1,288 @@
+/* ==========================================================================
+   FailSafe AI — design tokens
+   Palette:  ink #0B1220 / panel #121A2B / line #233047
+             amber #F5A524 (risk/attention)  teal #2DD4BF (growth/success)
+             rose  #FB7185 (high risk)       slate #94A3B8 (secondary text)
+             paper #E7ECF5 (primary text)
+   Type:     display = Space Grotesk · body = Inter · data = JetBrains Mono
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap');
+
+:root{
+  --ink:#0B1220;
+  --panel:#121A2B;
+  --panel-2:#0F1729;
+  --line:#233047;
+  --amber:#F5A524;
+  --amber-dim:rgba(245,165,36,0.14);
+  --teal:#2DD4BF;
+  --teal-dim:rgba(45,212,191,0.14);
+  --rose:#FB7185;
+  --rose-dim:rgba(251,113,133,0.14);
+  --paper:#E7ECF5;
+  --slate:#94A3B8;
+}
+
+html, body, [class*="css"]{
+  font-family:'Inter', sans-serif;
+}
+
+/* ---- app background ---- */
+.stApp{
+  background:
+    radial-gradient(circle at 10% 0%, rgba(245,165,36,0.06), transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(45,212,191,0.07), transparent 45%),
+    var(--ink);
+  color:var(--paper);
+}
+
+section[data-testid="stSidebar"]{
+  background:var(--panel-2);
+  border-right:1px solid var(--line);
+}
+
+/* hide default chrome */
+#MainMenu, header[data-testid="stHeader"], footer{visibility:hidden;}
+
+/* ---- headline / brand block ---- */
+.fs-eyebrow{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.18em;
+  color:var(--amber);
+  text-transform:uppercase;
+  margin-bottom:0.35rem;
+}
+.fs-h1{
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:700;
+  font-size:2.4rem;
+  line-height:1.1;
+  color:var(--paper);
+  margin:0;
+}
+.fs-sub{
+  font-family:'Inter', sans-serif;
+  color:var(--slate);
+  font-size:1.02rem;
+  margin-top:0.5rem;
+  max-width:640px;
+}
+
+/* ---- generic panel / card ---- */
+.fs-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:1.4rem 1.5rem;
+  margin-bottom:1rem;
+}
+.fs-card-tight{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:1rem 1.2rem;
+}
+
+.fs-section-label{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.7rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--slate);
+  margin-bottom:0.6rem;
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+}
+.fs-section-label::before{
+  content:"";
+  width:6px;height:6px;border-radius:50%;
+  background:var(--amber);
+  display:inline-block;
+}
+
+/* ---- pills / badges ---- */
+.fs-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:0.4rem;
+  padding:0.3rem 0.75rem;
+  border-radius:999px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.78rem;
+  font-weight:600;
+  letter-spacing:0.02em;
+}
+.fs-pill-low{ background:var(--teal-dim); color:var(--teal); border:1px solid rgba(45,212,191,0.35); }
+.fs-pill-med{ background:var(--amber-dim); color:var(--amber); border:1px solid rgba(245,165,36,0.35); }
+.fs-pill-high{ background:var(--rose-dim); color:var(--rose); border:1px solid rgba(251,113,133,0.35); }
+
+/* ---- metric tiles ---- */
+.fs-metric-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+  gap:0.8rem;
+}
+.fs-metric{
+  background:var(--panel-2);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:0.95rem 1.05rem;
+}
+.fs-metric-label{
+  font-size:0.72rem;
+  color:var(--slate);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  margin-bottom:0.3rem;
+}
+.fs-metric-value{
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.6rem;
+  font-weight:700;
+  color:var(--paper);
+}
+.fs-metric-value.accent{ color:var(--amber); }
+.fs-metric-value.good{ color:var(--teal); }
+.fs-metric-value.bad{ color:var(--rose); }
+
+/* ---- divider ---- */
+.fs-divider{
+  border:none;
+  border-top:1px solid var(--line);
+  margin:1.6rem 0;
+}
+
+/* ---- timeline ---- */
+.fs-timeline{ position:relative; padding-left:1.5rem; }
+.fs-timeline::before{
+  content:"";
+  position:absolute; left:5px; top:4px; bottom:4px;
+  width:2px; background:var(--line);
+}
+.fs-tl-item{ position:relative; padding:0.45rem 0 0.9rem 1rem; }
+.fs-tl-item::before{
+  content:"";
+  position:absolute; left:-1.5rem; top:0.5rem;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--amber);
+  box-shadow:0 0 0 3px var(--amber-dim);
+}
+.fs-tl-week{
+  font-family:'JetBrains Mono', monospace;
+  color:var(--amber);
+  font-size:0.78rem;
+  margin-right:0.5rem;
+}
+.fs-tl-text{ color:var(--paper); font-size:0.92rem; }
+
+/* ---- recovery checklist ---- */
+.fs-check{
+  display:flex; align-items:flex-start; gap:0.6rem;
+  padding:0.5rem 0;
+  color:var(--paper);
+  font-size:0.92rem;
+  border-bottom:1px solid var(--line);
+}
+.fs-check:last-child{ border-bottom:none; }
+.fs-check-mark{ color:var(--teal); font-family:'JetBrains Mono', monospace; }
+
+/* ---- gauge wrapper ---- */
+.fs-gauge-wrap{ text-align:center; }
+.fs-gauge-caption{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.75rem;
+  color:var(--slate);
+  letter-spacing:0.05em;
+  margin-top:0.3rem;
+}
+
+/* ---- persona banner ---- */
+.fs-persona{
+  border-radius:14px;
+  padding:1.1rem 1.4rem;
+  display:flex;
+  align-items:center;
+  gap:0.9rem;
+  border:1px solid var(--line);
+}
+.fs-persona-icon{ font-size:1.8rem; }
+.fs-persona-title{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.05rem; }
+.fs-persona-desc{ color:var(--slate); font-size:0.85rem; margin-top:0.15rem; }
+
+/* ---- streamlit widget restyle ---- */
+.stSlider label, .stSelectbox label, .stTextInput label, .stRadio label{
+  color:var(--slate) !important;
+  font-family:'Inter', sans-serif;
+  font-weight:500;
+  font-size:0.88rem;
+}
+div[data-baseweb="select"] > div{
+  background:var(--panel-2);
+  border-color:var(--line);
+}
+.stTextInput > div > div > input{
+  background:var(--panel-2);
+  color:var(--paper);
+  border:1px solid var(--line);
+}
+.stButton > button{
+  background:linear-gradient(135deg, var(--amber), #e08e0a);
+  color:#0B1220;
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:700;
+  border:none;
+  border-radius:10px;
+  padding:0.6rem 1.4rem;
+  letter-spacing:0.01em;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.stButton > button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 18px rgba(245,165,36,0.25);
+}
+.stButton > button:focus-visible{
+  outline:2px solid var(--teal);
+  outline-offset:2px;
+}
+
+/* tabs */
+button[data-baseweb="tab"]{
+  font-family:'Space Grotesk', sans-serif;
+  color:var(--slate);
+}
+button[data-baseweb="tab"][aria-selected="true"]{
+  color:var(--amber);
+}
+div[data-baseweb="tab-highlight"]{ background:var(--amber); }
+div[data-baseweb="tab-border"]{ background:var(--line); }
+
+/* expander */
+.streamlit-expanderHeader{
+  background:var(--panel-2);
+  border:1px solid var(--line);
+  border-radius:10px;
+  font-family:'Space Grotesk', sans-serif;
+}
+
+/* progress bar */
+div[data-testid="stProgress"] > div > div{
+  background:var(--amber) !important;
+}
+
+/* footer caption */
+.fs-footer{
+  text-align:center;
+  color:var(--slate);
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.08em;
+  padding:1.2rem 0 0.4rem 0;
+}
+
+@media (max-width: 640px){
+  .fs-h1{ font-size:1.8rem; }
+  .fs-metric-grid{ grid-template-columns:repeat(2,1fr); }
+}
